@@ -37,9 +37,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
     ]);
     $items = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Мои записи', 'url' => ['/report/index']],
+        ['label' => 'Создать запись', 'url' => ['/report/create']],
     ];
     if (Yii::$app->user->isGuest) {
      $items[] = ['label' => 'Login', 'url' => ['/site/login']];

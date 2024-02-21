@@ -20,6 +20,10 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    public function __toString()
+    {
+        return $this->login;
+    }
     /**
      * {@inheritdoc}
      */
@@ -78,6 +82,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->hasOne(Role::class, ['id' => 'role_id']);
     }
+    public static function getInstance() {
+        return Yii::$app->user->identity;
+    }
+    /**
+     * @return User|null
+     */
     public static function login($login, $pass)
     {
         $user = self::findOne(['login' => $login]);
@@ -131,6 +141,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function validateAuthKey($authKey)
     {
         return null;
+    }
+    public function isAdmin()
+    {
+        return $this->role_id == Role::ADMIN_ROLE_ID;
     }
 
 }
